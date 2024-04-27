@@ -24,7 +24,8 @@
     height: auto;
 }
 
-.img-showcase-section img {
-    width: 28rem;
+/* .img-showcase-section img {
+    width: 30rem;
+    min-width: 30rem;
     height: auto;
-}
+} */
