@@ -24,8 +24,6 @@
     height: auto;
 }
 
-/* .img-showcase-section img {
-    width: 30rem;
-    min-width: 30rem;
-    height: auto;
-} */
+.standard-transition {
+    transition: 150ms ease-out;
+}

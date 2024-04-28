@@ -26,7 +26,7 @@ module.exports = {
                     black: 'hsla(0, 0%, 0%, 0.75)',
                 },
             },
-            plugins: [],
+            plugins: [require('daisyui')],
         }
     }
 }
