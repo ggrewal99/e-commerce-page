@@ -7,7 +7,9 @@ import ImageShowcase from "@/app/components/ImageShowcase";
 
 
 function page() {
-    const [imageSelected, setImageSelected] = useState(IMAGE_SHOWCASE['img-1']['full']);
+    const [imageSelected, setImageSelected] = useState(
+        IMAGE_SHOWCASE['img-1']['full']
+    );
     const [itemQuantity, setItemQuantity] = useState(0);
     const [showModal, setShowModal] = useState(false);
 
@@ -31,37 +33,9 @@ function page() {
 
     return (
         <div className='mt-16 mx-2 lg:mx-12 flex gap-9'>
-            {/*<div className="img-showcase-section flex-1 flex flex-col">*/}
-            {/*    <div className='main-img'>*/}
-            {/*        <img src={imageSelected}*/}
-            {/*            alt=""*/}
-            {/*            className='rounded-xl w-full h-auto m-w-[20rem]*/}
-            {/*            cursor-pointer'*/}
-            {/*             onClick={toggleModal}*/}
-            {/*        />*/}
-            {/*    </div>*/}
-            {/*    <div className='other-img flex justify-between mt-8'>*/}
-            {/*        {Object.keys(IMAGE_SHOWCASE).map(key => (*/}
-            {/*            <img*/}
-            {/*                key={key}*/}
-            {/*                src={IMAGE_SHOWCASE[key]['thumbnail']}*/}
-            {/*                alt=""*/}
-            {/*                className={*/}
-            {/*                    'flex-1 max-w-[6rem] h-auto rounded-xl cursor-pointer hover:opacity-50 border-[3px] ' +*/}
-            {/*                    'standard-transition '*/}
-            {/*                    + (imageSelected === IMAGE_SHOWCASE[key]['full'] ?*/}
-            {/*                        'border-primary-orange opacity-75' : 'border-transparent')*/}
-            {/*                }*/}
-            {/*                onClick={() => handleThumbnailClick(IMAGE_SHOWCASE[key]['full'])}*/}
-            {/*            />*/}
-            {/*        ))}*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-
             <ImageShowcase
-                images={IMAGE_SHOWCASE}
-                imageSelected={imageSelected}
                 handleThumbnailClick={handleThumbnailClick}
+                imageSelected={imageSelected}
                 toggleModal={toggleModal}
             />
 
@@ -107,8 +81,9 @@ function page() {
             </div>
             {showModal && (
                 <ImageModal
-                    images={Object.values(IMAGE_SHOWCASE).map(image => image.full)}
                     closeModal={toggleModal}
+                    imageSelected={imageSelected}
+                    setImageSelected={setImageSelected}
                     handleThumbnailClick={handleThumbnailClick}
                 />
             )}
