@@ -1,13 +1,14 @@
-'use client'
-import React, {useState} from 'react';
+'use client';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import {useCart} from "@/app/contexts/CartProvider";
-import IMAGE_SHOWCASE from "@/app/constants";
+import { useCart } from '@/app/contexts/CartProvider';
+import IMAGE_SHOWCASE from '@/app/constants';
+import { FaTrashAlt } from 'react-icons/fa';
 
 function Navbar() {
     const [isCartHovered, setIsCartHovered] = useState(false);
 
-    const { cartItems } = useCart();
+    const { cartItems, removeFromCart } = useCart();
     const handleCartHover = () => {
         setIsCartHovered(true);
     };
@@ -16,6 +17,14 @@ function Navbar() {
         setIsCartHovered(false);
     };
 
+    const handleRemoveFromCart = (itemId) => {
+        removeFromCart(itemId);
+    };
+
+    const totalQuantity = cartItems.reduce(
+        (total, item) => total + item.quantity,
+        0
+    );
 
     return (
         <header className=''>
@@ -70,42 +79,86 @@ function Navbar() {
                     </Link>
                 </ul>
 
-                <div className='flex items-center gap-10 nav-right flex-0.5'
-                >
-                    <div className='relative'
-                         onMouseEnter={handleCartHover}
-                         onMouseLeave={handleCartLeave}>
+                <div className='flex items-center gap-10 nav-right flex-0.5'>
+                    <div
+                        className='relative'
+                        onMouseEnter={handleCartHover}
+                        onMouseLeave={handleCartLeave}
+                    >
                         <img
                             src='/assets/icons/icon-cart.svg'
                             alt=''
                             className='cart-icon cursor-pointer'
                         />
+                        {totalQuantity > 0 && (
+                            <span
+                                className='cart-qty text-sm absolute z-10 -top-[40%] -right-[60%] w-5 h-5 
+                        text-center rounded-full bg-primary-orange cursor-pointer'
+                            >
+                                {totalQuantity}
+                            </span>
+                        )}
                         {isCartHovered && (
-                            <div className='cart-dropdown
+                            <div
+                                className='cart-dropdown
                             shadow-lg absolute top-[100%] -right-[50%] z-[2] bg-white
-                            rounded-md w-[20rem]'>
-                                <h1 className='font-bold border-b border-gray-200 px-4 py-5'>Cart</h1>
+                            rounded-md w-[20rem]'
+                            >
+                                <h1 className='font-bold border-b border-gray-200 px-4 py-5'>
+                                    Cart
+                                </h1>
                                 <ul>
                                     {cartItems.map((item, index) => (
-                                        <li key={index} className="px-4 py-2 border-b border-gray-200 flex">
+                                        <li
+                                            key={index}
+                                            className='px-4 py-4 border-b border-gray-200 flex items-center'
+                                        >
                                             <div>
-                                                <img src={IMAGE_SHOWCASE[item.id]['thumbnail']} alt=""
-                                                className='w-[3.5rem] rounded-md'/>
+                                                <img
+                                                    src={
+                                                        IMAGE_SHOWCASE[item.id][
+                                                            'thumbnail'
+                                                        ]
+                                                    }
+                                                    alt=''
+                                                    className='w-[3.5rem] rounded-md me-2'
+                                                />
                                             </div>
                                             <div className='flex flex-col flex-1'>
-                                                <span className='text-sm'>{item.name}</span>
+                                                <span className='text-sm text-neutral-darkGrayishBlue'>
+                                                    {item.name}
+                                                </span>
                                                 <div className='flex gap-1'>
-                                                    <span>${item.price}.00 x {item.quantity}</span>
-                                                    <span className='font-bold'>${item.price*item.quantity}.00</span>
+                                                    <span className='text-neutral-darkGrayishBlue'>
+                                                        ${item.price}.00 x{' '}
+                                                        {item.quantity}
+                                                    </span>
+                                                    <span className='font-bold'>
+                                                        $
+                                                        {item.price *
+                                                            item.quantity}
+                                                        .00
+                                                    </span>
                                                 </div>
                                             </div>
-                                            <button className='flex-0.5'>
-                                                Delete
+                                            <button
+                                                className='flex-0.5'
+                                                onClick={() =>
+                                                    handleRemoveFromCart(
+                                                        item.id
+                                                    )
+                                                }
+                                            >
+                                                <FaTrashAlt />
                                             </button>
                                         </li>
                                     ))}
                                     {/* If cart is empty, display a message */}
-                                    {cartItems.length === 0 && <li className="px-4 py-2">Cart is empty</li>}
+                                    {cartItems.length === 0 && (
+                                        <li className='px-4 py-4 text-center text-neutral-darkGrayishBlue'>
+                                            Cart is empty
+                                        </li>
+                                    )}
                                 </ul>
                             </div>
                         )}

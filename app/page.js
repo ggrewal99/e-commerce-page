@@ -4,7 +4,7 @@ import IMAGE_SHOWCASE from "./constants";
 import { IoCartOutline } from "react-icons/io5";
 import ImageModal from "@/app/components/ImageModal";
 import ImageShowcase from "@/app/components/ImageShowcase";
-import {useCart} from "@/app/contexts/CartProvider";
+import { useCart } from "@/app/contexts/CartProvider";
 
 
 function page() {
@@ -34,6 +34,9 @@ function page() {
     };
 
     const handleAddToCart = () => {
+        if (itemQuantity == 0) {
+            return;
+        }
         // Below item is hardcoded because only 1 item exists for now
         const newCartItem = {
             id: 'img-1',
@@ -43,7 +46,7 @@ function page() {
         };
         addToCart(newCartItem);
 
-        console.log(cartItems)
+        console.log(cartItems);
     };
 
     return (
@@ -88,8 +91,8 @@ function page() {
                     <div className='flex-1'>
                         <button className='bg-primary-orange text-white w-full h-full
                         rounded-lg flex items-center justify-center hover:bg-opacity-50 standard-transition'
-                        onClick={handleAddToCart}>
-                            <IoCartOutline className='me-2 scale-150'/>
+                            onClick={handleAddToCart}>
+                            <IoCartOutline className='me-2 scale-150' />
                             <span className='font-bold'>Add to Cart</span>
                         </button>
                     </div>
