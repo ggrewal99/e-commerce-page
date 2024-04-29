@@ -1,7 +1,22 @@
-import React from 'react';
+'use client'
+import React, {useState} from 'react';
 import Link from 'next/link';
+import {useCart} from "@/app/contexts/CartProvider";
+import IMAGE_SHOWCASE from "@/app/constants";
 
 function Navbar() {
+    const [isCartHovered, setIsCartHovered] = useState(false);
+
+    const { cartItems } = useCart();
+    const handleCartHover = () => {
+        setIsCartHovered(true);
+    };
+
+    const handleCartLeave = () => {
+        setIsCartHovered(false);
+    };
+
+
     return (
         <header className=''>
             <div
@@ -55,13 +70,45 @@ function Navbar() {
                     </Link>
                 </ul>
 
-                <div className='flex items-center gap-10 nav-right flex-0.5'>
-                    <div>
+                <div className='flex items-center gap-10 nav-right flex-0.5'
+                >
+                    <div className='relative'
+                         onMouseEnter={handleCartHover}
+                         onMouseLeave={handleCartLeave}>
                         <img
                             src='/assets/icons/icon-cart.svg'
                             alt=''
                             className='cart-icon cursor-pointer'
                         />
+                        {isCartHovered && (
+                            <div className='cart-dropdown
+                            shadow-lg absolute top-[100%] -right-[50%] z-[2] bg-white
+                            rounded-md w-[20rem]'>
+                                <h1 className='font-bold border-b border-gray-200 px-4 py-5'>Cart</h1>
+                                <ul>
+                                    {cartItems.map((item, index) => (
+                                        <li key={index} className="px-4 py-2 border-b border-gray-200 flex">
+                                            <div>
+                                                <img src={IMAGE_SHOWCASE[item.id]['thumbnail']} alt=""
+                                                className='w-[3.5rem] rounded-md'/>
+                                            </div>
+                                            <div className='flex flex-col flex-1'>
+                                                <span className='text-sm'>{item.name}</span>
+                                                <div className='flex gap-1'>
+                                                    <span>${item.price}.00 x {item.quantity}</span>
+                                                    <span className='font-bold'>${item.price*item.quantity}.00</span>
+                                                </div>
+                                            </div>
+                                            <button className='flex-0.5'>
+                                                Delete
+                                            </button>
+                                        </li>
+                                    ))}
+                                    {/* If cart is empty, display a message */}
+                                    {cartItems.length === 0 && <li className="px-4 py-2">Cart is empty</li>}
+                                </ul>
+                            </div>
+                        )}
                     </div>
                     <div>
                         <img
