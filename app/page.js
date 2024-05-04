@@ -34,7 +34,7 @@ function page() {
     };
 
     const handleAddToCart = () => {
-        if (itemQuantity == 0) {
+        if (itemQuantity === 0) {
             return;
         }
         // Below item is hardcoded because only 1 item exists for now
@@ -50,20 +50,21 @@ function page() {
     };
 
     return (
-        <div className='mt-16 mx-2 lg:mx-12 flex gap-9'>
+        <div className='md:mt-16 md:mx-2 lg:mx-12 flex flex-col md:flex-row gap-9'>
             <ImageShowcase
                 handleThumbnailClick={handleThumbnailClick}
                 imageSelected={imageSelected}
                 toggleModal={toggleModal}
+                setImageSelected={setImageSelected}
             />
 
-            <div className="text-section md:px-8 py-16 flex-1">
+            <div className="text-section px-4 md:px-8 md:py-16 py-4 flex-1">
                 <h2
                     className='uppercase font-bold text-primary-orange text-sm tracking-widest'>
                     Sneaker company
                 </h2>
                 <h1
-                    className='text-5xl font-bold break-words mt-6'>Fall Limited Edition Sneakers</h1>
+                    className='text-3xl md:text-5xl font-bold break-words mt-6'>Fall Limited Edition Sneakers</h1>
 
                 <p className='text-neutral-darkGrayishBlue mt-10'>
                     These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.
@@ -77,20 +78,20 @@ function page() {
                     <h2 className='text-neutral-grayishBlue mt-2 font-bold line-through'>$250.00</h2>
                 </div>
 
-                <div className='purchase mt-6 flex gap-3'>
-                    <div className='qty flex items-center gap-3 bg-neutral-lightGrayishBlue 
-                    flex-0.5 rounded-lg p-3'>
+                <div className='purchase mt-6 flex flex-col lg:flex-row gap-3'>
+                    <div className='qty flex items-center justify-between gap-3 bg-neutral-lightGrayishBlue
+                     rounded-lg'>
                         <button className='text-primary-orange font-bold text-2xl 
-                        standard-transition hover:opacity-50'
+                        standard-transition hover:opacity-50 p-3'
                             onClick={handleDecreaseQuantity}>-</button>
-                        <span className='font-bold min-w-[4rem] text-center'>{itemQuantity}</span>
+                        <span className='font-bold lg:min-w-[2rem] text-center'>{itemQuantity}</span>
                         <button className='text-primary-orange font-bold text-2xl 
-                        standard-transition hover:opacity-50'
+                        standard-transition hover:opacity-50 p-3'
                             onClick={handleIncreaseQuantity}>+</button>
                     </div>
                     <div className='flex-1'>
                         <button className='bg-primary-orange text-white w-full h-full
-                        rounded-lg flex items-center justify-center hover:bg-opacity-50 standard-transition'
+                        rounded-lg flex items-center justify-center hover:bg-opacity-50 standard-transition py-3'
                             onClick={handleAddToCart}>
                             <IoCartOutline className='me-2 scale-150' />
                             <span className='font-bold'>Add to Cart</span>

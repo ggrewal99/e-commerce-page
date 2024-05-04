@@ -25,7 +25,6 @@ export const CartProvider = ({ children }) => {
         setCartItems(prevCartItems => {
             const updatedCartItems = prevCartItems.map(item => {
                 if (item.id === itemId) {
-                    // Decrease quantity by 1
                     const updatedQuantity = item.quantity - 1;
                     // If quantity becomes zero, remove the item
                     return updatedQuantity > 0 ? { ...item, quantity: updatedQuantity } : null;

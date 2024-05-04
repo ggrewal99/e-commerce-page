@@ -14,7 +14,7 @@ export default function RootLayout({children}) {
     return (
         <html lang="en">
         <body className={ksans.className}>
-        <div className='container mx-auto px-0 lg:px-32'>
+        <div className='container mx-auto px-0 md:px-16 lg:px-32'>
             <CartProvider>
                 <Navbar/>
                 {children}
