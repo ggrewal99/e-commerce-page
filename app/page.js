@@ -50,7 +50,7 @@ function page() {
     };
 
     return (
-        <div className='md:mt-16 md:mx-2 lg:mx-12 flex flex-col md:flex-row gap-9'>
+        <main className='md:mt-16 md:mx-2 lg:mx-12 flex flex-col md:flex-row gap-9'>
             <ImageShowcase
                 handleThumbnailClick={handleThumbnailClick}
                 imageSelected={imageSelected}
@@ -58,7 +58,7 @@ function page() {
                 setImageSelected={setImageSelected}
             />
 
-            <div className="text-section px-4 md:px-8 md:py-16 py-4 flex-1">
+            <section className="text-section px-4 md:px-8 md:py-16 py-4 flex-1">
                 <h2
                     className='uppercase font-bold text-primary-orange text-sm tracking-widest'>
                     Sneaker company
@@ -98,7 +98,7 @@ function page() {
                         </button>
                     </div>
                 </div>
-            </div>
+            </section>
             {showModal && (
                 <ImageModal
                     closeModal={toggleModal}
@@ -107,7 +107,7 @@ function page() {
                     handleThumbnailClick={handleThumbnailClick}
                 />
             )}
-        </div>
+        </main>
     );
 }
 

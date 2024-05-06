@@ -52,7 +52,7 @@ function Navbar() {
                 <Link href='/'>
                     <img
                         src='/assets/icons/logo.svg'
-                        alt=''
+                        alt='Sneakers Logo'
                         className='logo'
                     />
                 </Link>
@@ -71,11 +71,6 @@ function Navbar() {
                     onMouseEnter={handleCartHover}
                     onMouseLeave={handleCartLeave}
                 >
-                    {/*<img*/}
-                    {/*    src='/assets/icons/icon-cart.svg'*/}
-                    {/*    alt=''*/}
-                    {/*    className='cart-icon cursor-pointer py-12'*/}
-                    {/*/>*/}
                     <div className='cursor-pointer py-12 relative'>
                         <IoCartOutline className='scale-[170%]' />
                         {totalQuantity > 0 && (<span
@@ -92,7 +87,8 @@ function Navbar() {
                             rounded-md w-[95vw] md:w-[21rem]'
                         >
                             <div
-                                className='opacity-0 md:opacity-100 text-2xl absolute top-0 left-[82%] md:left-[50%] -translate-x-1/2 -translate-y-[75%]
+                                className='opacity-0 md:opacity-100 text-2xl absolute top-0 left-[82%] md:left-[50%]
+                                -translate-x-1/2 -translate-y-[75%]
                                 text-primary-orange z-[20]'>
                                 <GoTriangleUp/></div>
                             <h1 className='font-bold border-b border-gray-200 px-4 py-5'>
@@ -159,15 +155,15 @@ function Navbar() {
                 className={'fixed z-10 top-0 left-0 h-[100vh] w-[100vw] bg-black bg-opacity-25 transition duration-300 ease-out ' +
                     `${isDrawerOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className='w-[75vw] h-full bg-white px-5 py-12'>
-                    <button
-                        className='close-button'
+                    <div
+                        className='close-button cursor-pointer'
                         onClick={toggleDrawer}
                     >
                         <IoMdClose
                             className='scale-150 text-neutral-darkGrayishBlue hover:text-primary-orange
                     standard-transition'
                         />
-                    </button>
+                    </div>
                     <ul className='list-none lg:gap-8 md:gap-4 font-bold text-lg flex flex-col gap-3 mt-8'>
                         {navbarLinks.map((link, index) => (
                             <li key={index} className='border-b-4 border-white hover:border-primary-orange

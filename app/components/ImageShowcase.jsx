@@ -30,11 +30,11 @@ const ImageShowcase = ({
     };
 
     return (
-        <div className='img-showcase-section flex-1 flex flex-col md:max-w-[35rem] relative'>
+        <section className='img-showcase-section flex-1 flex flex-col md:max-w-[35rem] relative'>
             <div className='main-img'>
                 <img
                     src={imageSelected}
-                    alt=''
+                    alt='Full Image of the product'
                     className={`${showModal ? 'rounded-xl' : ''} h-auto cursor-pointer`}
                     onClick={toggleModal}
                 />
@@ -76,7 +76,7 @@ const ImageShowcase = ({
             >
                 <FaChevronRight/>
             </button>
-        </div>
+        </section>
     );
 };
 
