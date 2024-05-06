@@ -47,4 +47,4 @@ Users should be able to:
 ### Useful resources
 
 - [NextJS & OpenAI - 2024 Edition - By John Smilga](https://www.udemy.com/course/nextjs-open-ai/) - This online course helped me get a good understanding of building web apps using Next.js.
-- [Tailwind CSS documentation](https://tailwindcss.com/docs/) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Tailwind CSS documentation](https://tailwindcss.com/docs/)
